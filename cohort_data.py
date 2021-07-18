@@ -168,7 +168,11 @@ def all_data(filename):
 
     all_data = []
 
-    # TODO: replace this with your code
+    cohort_data = open(filename)
+
+    for line in cohort_data:
+      first, last, house, advisor, cohort = line.rstrip().split("|")
+      all_data.append((f'{first} {last}', house, advisor, cohort))
 
     return all_data
 
@@ -194,8 +198,13 @@ def get_cohort_for(filename, name):
       - str: the person's cohort or None
     """
 
-    # TODO: replace this with your code
+    person_list = all_data(filename)
 
+    for person in person_list:
+      if person[0] == name:
+        return person[3]
+
+    return None
 
 def find_duped_last_names(filename):
     """Return a set of duplicated last names that exist in the data.
