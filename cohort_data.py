@@ -17,8 +17,6 @@ def all_houses(filename):
 
     houses = set()
 
-    #first_name|last_name|house|adviser|cohort_name
-
     cohort_data = open(filename)
 
     for line in cohort_data:
@@ -59,7 +57,13 @@ def students_by_cohort(filename, cohort='All'):
 
     students = []
 
-    # TODO: replace this with your code
+    cohort_data = open(filename)
+
+    for line in cohort_data:
+      first_name, last_name, _, _, file_cohort_name = line.rstrip().rsplit("|")
+
+      if file_cohort_name not in ("I", "G") and cohort in ('All', file_cohort_name):
+        students.append(f"{first_name} {last_name}")
 
     return sorted(students)
 
