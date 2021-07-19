@@ -247,8 +247,23 @@ def get_housemates_for(filename, name):
     >>> get_housemates_for('cohort_data.txt', 'Hermione Granger')
     {'Angelina Johnson', ..., 'Seamus Finnigan'}
     """
+    #use helper function to get tuples of all student data
+    all_student_data = all_data(filename)
 
-    # TODO: replace this with your code
+    housemates = set()
+    #iterate through all student data to determine primary student's house and cohortname
+    for tuple in all_student_data:
+      if tuple[0] == name:
+        house = tuple[1]
+        cohort_name = tuple[3]
+
+    #iterate through all student data again to find other students with the same house and cohort.
+    #add them to final housemates set that will be returned
+    for tuple in all_student_data:
+      if tuple[1] == house and tuple[3] == cohort_name and tuple[0] != name:
+        housemates.add(tuple[0])
+
+    return housemates
 
 
 ##############################################################################
